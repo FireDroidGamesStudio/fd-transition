@@ -43,6 +43,18 @@ func _physics_process(delta: float) -> void:
 	pass
 
 
+func play(
+	in_callback: Callable = func(): return,
+	out_callback: Callable = func(): return
+) -> Array:
+	var result: Array = []
+	result.resize(2)
+	result[0] = await play_in(in_callback)
+	result[1] = await play_out(out_callback)
+	finished.emit()
+	return result
+
+
 func play_in(callback: Callable = func(): return) -> Variant:
 	if not is_zero_approx(in_pre_delay):
 		await get_tree().create_timer(in_pre_delay).timeout
