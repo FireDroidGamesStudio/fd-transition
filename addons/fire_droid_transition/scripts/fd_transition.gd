@@ -3,8 +3,8 @@ class_name FDTransition
 extends Node
 
 
-## Emitted when the transition is started (by calling [method play_in] or [method play_out]).
-signal playing
+## Emitted when the transition start (by calling [method play], [method play_in] or [method play_out]).
+signal started
 ## Emitted when a step finish (after calling [method play_in] or [method play_out]).
 signal step_finished
 ## Emitted when the full cycle of transition finish (after calling [method play]).
