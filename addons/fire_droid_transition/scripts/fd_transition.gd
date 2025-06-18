@@ -28,7 +28,9 @@ signal finished
 @export_range(0.0, 5.0, 0.1, "or_greater") var out_post_delay: float = 0.0
 
 # Preview
+@export_group("")
 @export_tool_button("Preview In") var _preview_in_button = play_in
+@export_tool_button("Preview Out") var _preview_out_button = play_out
 
 
 func _ready() -> void:
