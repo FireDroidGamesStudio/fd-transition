@@ -49,6 +49,7 @@ func play(
 ) -> Array:
 	var result: Array = []
 	result.resize(2)
+	started.emit()
 	result[0] = await play_in(in_callback)
 	result[1] = await play_out(out_callback)
 	finished.emit()
@@ -56,6 +57,7 @@ func play(
 
 
 func play_in(callback: Callable = func(): return) -> Variant:
+	started.emit()
 	if not is_zero_approx(in_pre_delay):
 		await get_tree().create_timer(in_pre_delay).timeout
 	await _on_play_in()
@@ -67,6 +69,7 @@ func play_in(callback: Callable = func(): return) -> Variant:
 
 
 func play_out(callback: Callable = func(): return) -> Variant:
+	started.emit()
 	if not is_zero_approx(out_pre_delay):
 		await get_tree().create_timer(out_pre_delay).timeout
 	await _on_play_out()
