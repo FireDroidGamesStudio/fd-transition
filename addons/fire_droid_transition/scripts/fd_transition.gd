@@ -59,6 +59,7 @@ func play(
 
 
 func play_in(callback: Callable = func(): return) -> Variant:
+	await _setup_play_in()
 	started.emit()
 	if not is_zero_approx(in_pre_delay):
 		await get_tree().create_timer(in_pre_delay).timeout
@@ -73,6 +74,7 @@ func play_in(callback: Callable = func(): return) -> Variant:
 
 
 func play_out(callback: Callable = func(): return) -> Variant:
+	await _setup_play_out()
 	started.emit()
 	if not is_zero_approx(out_pre_delay):
 		await get_tree().create_timer(out_pre_delay).timeout
@@ -84,6 +86,16 @@ func play_out(callback: Callable = func(): return) -> Variant:
 		await get_tree().create_timer(out_post_delay).timeout
 	step_finished.emit()
 	return result
+
+
+# Overridable
+func _setup_play_in() -> void:
+	pass
+
+
+# Overridable
+func _setup_play_out() -> void:
+	pass
 
 
 # Overridable
