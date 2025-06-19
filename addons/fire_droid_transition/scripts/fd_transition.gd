@@ -65,7 +65,7 @@ func play_in(callback: Callable = func(): return) -> Variant:
 		await get_tree().create_timer(in_pre_delay).timeout
 	await get_tree().create_tween().set_ease(ease_in).set_trans(trans_in).tween_method(
 		_on_play_in, 0.0, 1.0, duration_in
-	)
+	).finished
 	var result: Variant = await callback.call()
 	if not is_zero_approx(in_post_delay):
 		await get_tree().create_timer(in_post_delay).timeout
@@ -80,7 +80,7 @@ func play_out(callback: Callable = func(): return) -> Variant:
 		await get_tree().create_timer(out_pre_delay).timeout
 	await get_tree().create_tween().set_ease(ease_out).set_trans(trans_out).tween_method(
 		_on_play_out, 1.0, 0.0, duration_out
-	)
+	).finished
 	var result: Variant = await callback.call()
 	if not is_zero_approx(out_post_delay):
 		await get_tree().create_timer(out_post_delay).timeout
