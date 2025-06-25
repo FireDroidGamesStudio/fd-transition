@@ -31,6 +31,10 @@ signal finished
 @export_group("")
 @export_tool_button("Preview In") var _preview_in_button = play_in
 @export_tool_button("Preview Out") var _preview_out_button = play_out
+@export_range(0.0, 1.0) var _custom_preview_in: float = 0.5:
+	set = _set_custom_preview_in
+@export_range(0.0, 1.0) var _custom_preview_out: float = 0.5:
+	set = _set_custom_preview_out
 
 
 func _ready() -> void:
@@ -106,3 +110,21 @@ func _on_play_in(ratio: float) -> void:
 # Overridable
 func _on_play_out(ratio: float) -> void:
 	pass
+
+
+func _set_custom_preview_in(value: float) -> void:
+	_custom_preview_in = value
+	if Engine.is_editor_hint() and is_node_ready():
+		_on_play_in(Tween.interpolate_value(
+			0.0, 1.0, lerp(0.0, duration_in, _custom_preview_in),
+			duration_in, trans_in, ease_in
+		))
+
+
+func _set_custom_preview_out(value: float) -> void:
+	_custom_preview_out = value
+	if Engine.is_editor_hint() and is_node_ready():
+		_on_play_out(Tween.interpolate_value(
+			1.0, -1.0, lerp(0.0, duration_out, _custom_preview_out),
+			duration_out, trans_out, ease_out
+		))
