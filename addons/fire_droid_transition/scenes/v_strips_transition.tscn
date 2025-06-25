@@ -7,7 +7,7 @@
 resource_local_to_scene = true
 shader = ExtResource("2_1t3bt")
 shader_parameter/strips_width = 20.0
-shader_parameter/ratio = 1.0
+shader_parameter/ratio = 0.4995
 shader_parameter/color_1 = Color(1, 1, 1, 1)
 shader_parameter/color_2 = Color(0, 0, 0, 1)
 
@@ -17,6 +17,8 @@ duration_in = 1.5
 trans_in = 5
 duration_out = 1.5
 trans_out = 5
+_custom_preview_in = 0.1
+_custom_preview_out = 0.1
 metadata/_custom_type_script = "uid://bcjijvcuwpin4"
 
 [node name="ColorRect" type="ColorRect" parent="."]
