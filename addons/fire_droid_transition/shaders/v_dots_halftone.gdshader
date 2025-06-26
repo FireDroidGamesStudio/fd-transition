@@ -36,6 +36,6 @@ void fragment() {
 	);
 
 	COLOR.rgb = color.rgb;
-	
+
 	COLOR.a = grid_result.a * color.a;
 }
